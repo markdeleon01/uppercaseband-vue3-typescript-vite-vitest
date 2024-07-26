@@ -6,16 +6,13 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'not-found',
-  props: {
+<script setup lang="ts">
+  defineProps({
     resource: {
-      type: String,
-      required: true
-    }
-  }
-}
+        type: String,
+        required: true
+      }
+  })
 </script>
 
 <style scoped>
