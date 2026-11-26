@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: `https://my-json-server.typicode.com/markdeleon01/uppercaseband-vue3-ts-vite`,
+  baseURL: `/api`, // this is the base URL for all API calls.  The /api prefix is used to avoid conflicts with other routes in the app.  The /api prefix is also used to proxy API calls to the backend server in development mode (see vite.config.ts)
   withCredentials: false, // This is the default
   headers: {
     Accept: 'application/json',
