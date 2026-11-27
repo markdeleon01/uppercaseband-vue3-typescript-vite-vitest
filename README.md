@@ -47,6 +47,16 @@ npm install
 npm run dev
 ```
 
+### Run the Local API Backend
+
+Start the JSON Server backend in a separate terminal:
+
+```sh
+npm run api
+```
+
+The API serves data from `db.json` on `http://localhost:3000`, with endpoints for `/members`, `/discography`, and `/events`.
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh
@@ -65,10 +75,10 @@ npm run test:unit
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
+This starts the local API backend and runs the end-to-end tests against the Vite development server.
 It is much faster than the production build.
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+The `test:e2e` script also starts the local API backend before testing the production build (e.g. in CI environments):
 
 ```sh
 npm run build

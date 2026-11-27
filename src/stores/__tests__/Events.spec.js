@@ -7,12 +7,11 @@ describe('Events Store', () => {
     setActivePinia(createPinia())
   })
 
-  it('retrieves the number of events', () => {
+  it('retrieves the number of events', async () => {
     const store = useEventsStore()
     expect(store.events.length).toBe(0)
 
-    store.fetchEvents().then(() => {
-      expect(store.events.length).toBe(6)
-    })
+    await store.fetchEvents()
+    expect(store.events.length).toBe(6)
   })
 })

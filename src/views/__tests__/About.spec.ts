@@ -6,7 +6,7 @@ import { createTestingPinia } from '@pinia/testing'
 import { useMembersStore } from '../../stores/Members'
 
 describe('About.vue', () => {
-  it('ensures the About page is rendered containing key sections', () => {
+  it('ensures the About page is rendered containing key sections', async () => {
     const wrapper = mount(About, {
       global: {
         plugins: [
@@ -41,16 +41,15 @@ describe('About.vue', () => {
 
     // actions are stubbed by default, meaning they don't execute their code by default.
     // specify stubActions: false to normally execute your actions during tests
-    store.fetchMembers().then(() => {
-      expect(store.fetchMembers).toHaveBeenCalledTimes(1)
-      expect(store.fetchMembers).toHaveBeenLastCalledWith()
-      expect(store.members).to.have.lengthOf(4)
+    await store.fetchMembers()
+    expect(store.fetchMembers).toHaveBeenCalledTimes(1)
+    expect(store.fetchMembers).toHaveBeenLastCalledWith()
+    expect(store.members).to.have.lengthOf(4)
 
-      // since stubbing was set to false, the action will execute its code
-      expect(wrapper.findAll('.member-item')).to.have.lengthOf(4)
+    // since stubbing was set to false, the action will execute its code
+    expect(wrapper.findAll('.member-item')).to.have.lengthOf(4)
 
-      expect(wrapper.find('.band-pic').exists()).to.equal(true)
-      expect(wrapper.find('.biography').exists()).to.equal(true)
-    })
+    expect(wrapper.find('.band-pic').exists()).to.equal(true)
+    expect(wrapper.find('.biography').exists()).to.equal(true)
   })
 })

@@ -7,6 +7,7 @@ export default mergeConfig(
   defineConfig({
     test: {
       globals: true,
+      setupFiles: ['./src/test/setup.ts'],
       coverage: {
         reporter: ['json-summary', 'html'],
         provider: 'v8'
