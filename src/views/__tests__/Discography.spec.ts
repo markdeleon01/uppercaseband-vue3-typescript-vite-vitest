@@ -5,7 +5,7 @@ import { createTestingPinia } from '@pinia/testing'
 import { useDiscographyStore } from '@/stores/Discography'
 
 describe('Discography.vue', () => {
-  it('ensures the Discography page is rendered containing key sections', () => {
+  it('ensures the Discography page is rendered containing key sections', async () => {
     const wrapper = mount(Discography, {
       global: {
         plugins: [
@@ -31,16 +31,15 @@ describe('Discography.vue', () => {
 
     expect(wrapper.findAll('.release-item')).to.have.lengthOf(0)
 
-    store.fetchReleases().then(() => {
-      expect(store.fetchReleases).toHaveBeenCalledTimes(1)
-      expect(store.fetchReleases).toHaveBeenLastCalledWith()
-      expect(store.releases).to.have.lengthOf(6)
+    await store.fetchReleases()
+    expect(store.fetchReleases).toHaveBeenCalledTimes(1)
+    expect(store.fetchReleases).toHaveBeenLastCalledWith()
+    expect(store.releases).to.have.lengthOf(6)
 
-      expect(wrapper.findAll('.release-item')).to.have.lengthOf(6)
-      expect(wrapper.findAll('.release-thumbnail')).to.have.lengthOf(6)
-      expect(wrapper.findAll('.release-title')).to.have.lengthOf(6)
-      expect(wrapper.findAll('.release-date')).to.have.lengthOf(6)
-      expect(wrapper.findAll('.release-url')).to.have.lengthOf(6)
-    })
+    expect(wrapper.findAll('.release-item')).to.have.lengthOf(6)
+    expect(wrapper.findAll('.release-thumbnail')).to.have.lengthOf(6)
+    expect(wrapper.findAll('.release-title')).to.have.lengthOf(6)
+    expect(wrapper.findAll('.release-date')).to.have.lengthOf(6)
+    expect(wrapper.findAll('.release-url')).to.have.lengthOf(6)
   })
 })

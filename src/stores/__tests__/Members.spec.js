@@ -8,15 +8,16 @@ describe('Members Store', () => {
     setActivePinia(createPinia())
   })
 
-  it('retrieves the number of members', () => {
+  it('retrieves the number of members', async () => {
     const store = useMembersStore()
     expect(store.members.length).toBe(0)
 
-    store.fetchMembers().then(() => {
-      expect(store.members.length).toBe(4)
-      store.$reset()
-      expect(store.members.length).toBe(0)
-      store.$patch([
+    await store.fetchMembers()
+    expect(store.members.length).toBe(4)
+    store.$reset()
+    expect(store.members.length).toBe(0)
+    store.$patch({
+      members: [
         {
           name: 'Mark de Leon',
           role: 'vocals, guitars',
@@ -37,8 +38,8 @@ describe('Members Store', () => {
           role: 'drums',
           'image-url': 'kyle-saliva.png'
         }
-      ])
-      expect(store.members.length).toBe(4)
+      ]
     })
+    expect(store.members.length).toBe(4)
   })
 })

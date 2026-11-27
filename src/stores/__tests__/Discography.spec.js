@@ -7,12 +7,11 @@ describe('Discography Store', () => {
     setActivePinia(createPinia())
   })
 
-  it('retrieves the number of releases', () => {
+  it('retrieves the number of releases', async () => {
     const store = useDiscographyStore()
     expect(store.releases.length).toBe(0)
 
-    store.fetchReleases().then(() => {
-      expect(store.releases.length).toBe(6)
-    })
+    await store.fetchReleases()
+    expect(store.releases.length).toBe(6)
   })
 })
