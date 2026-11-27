@@ -47,6 +47,16 @@ npm install
 npm run dev
 ```
 
+### Run the Local API Backend
+
+Start the JSON Server backend in a separate terminal:
+
+```sh
+npm run api
+```
+
+The API serves data from `db.json` on `http://localhost:3000`, with endpoints for `/members`, `/discography`, and `/events`.
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh
