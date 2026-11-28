@@ -18,6 +18,7 @@ export const useMembersStore = defineStore(
     }),
     getters: {
       //Getters are exactly the equivalent of computed values for the state of a Store.  They receive the state as the first parameter to encourage the usage of arrow function
+      getMembers: state => state.members
     },
     actions: {
       /* c8 ignore start */
