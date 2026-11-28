@@ -29,6 +29,8 @@ describe('Events.vue', () => {
     store.events = []
     store.$patch({ events: [] })
 
+    expect(wrapper.findAll('.event-item')).to.have.lengthOf(0)
+
     await store.fetchEvents()
     expect(store.fetchEvents).toHaveBeenCalledTimes(1)
     expect(store.fetchEvents).toHaveBeenLastCalledWith()

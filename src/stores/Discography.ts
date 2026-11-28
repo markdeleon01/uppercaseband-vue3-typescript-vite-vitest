@@ -5,6 +5,9 @@ export const useDiscographyStore = defineStore('discography', {
   state: () => ({
     releases: []
   }),
+  getters: {
+        getReleases: state => state.releases
+},
   actions: {
     /* c8 ignore start */
     async fetchReleases() {
